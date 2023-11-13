@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+import org.example.dao.Sql2oHeroDao;
+import org.example.dao.Sql2oSquadDao;
+import org.example.models.Hero;
+import org.example.models.Squad;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -16,16 +20,16 @@ import javax.sound.sampled.Port;
 
 import static spark.Spark.*;
 public class App {
-    static int getHerokuAssignedPort() {
+    static int getAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         if (processBuilder.environment().get("PORT") != null) {
             return Integer.parseInt(processBuilder.environment().get("PORT"));
         }
-        return 4500; //return default port if heroku-port isn't set (i.e. on localhost)
+        return 4501; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 
     public static void main(String[] args) throws IOException {
-        port(getHerokuAssignedPort());
+        port(getAssignedPort());
         staticFiles.location("/public");
         File file = new File("src/main/resources/public/images/default.png");//default image for heroes
         InputStream fis = new FileInputStream(file);
