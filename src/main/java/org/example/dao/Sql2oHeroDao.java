@@ -7,7 +7,7 @@ import org.sql2o.Sql2o;
 
 import java.util.List;
 
-public class Sql2oHeroDao {
+public class Sql2oHeroDao implements HeroDao{
     @Override
     public void add(Hero hero) {
         String sql = "INSERT INTO  heroes (name,age,power,weakness,squadId,image) VALUES (:name,:age,:power,:weakness,:squadId,:image)";
